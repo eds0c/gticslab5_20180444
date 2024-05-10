@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+    <title>Técnicos</title>
+</head>
+<body>
+<nav th:replace="~{home.html :: navbar}">
+</nav>
+<div class="container">
+    <div style="text-align: center;"><h1>Lista de Técnicos</h1></div>
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{'/empleados/nuevo'}">Nuevo Técnico</a>
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>Celular</th>
+            <th>Edad</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="tec,obj: ${listaTecnicos}">
+            <td th:text="${obj.index+1}"> </td>
+            <td th:text="${tec.firstName}"></td>
+            <td th:text="${tec.lastName}"></td>
+            <td th:text="${tec.dni}"></td>
+            <td th:text="${tec.phone}"></td>
+            <td th:text="${tec.age}"></td>
+            <td><a class="btn btn-primary" th:href="@{'/empleados/editar?idEmployee=' + ${tec.technicianId}}">Editar</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/empleados/borrar?idEmployee=' + ${tec.technicianId}}">Borrar</a></td>
+        </tr>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+</html>
